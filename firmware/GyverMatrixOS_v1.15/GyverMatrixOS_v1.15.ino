@@ -14,6 +14,7 @@
 #   include "sys/param.h"
 #elif defined(ESP8266)
 #   include <ESP8266WiFi.h>
+#   include <ArduinoOTA.h>
 #   define FASTLED_ESP8266_RAW_PIN_ORDER
 #endif
 #include <WiFiUdp.h>
@@ -531,6 +532,7 @@ void setup() {
 }
 
 void loop() {
+  ArduinoOTA.handle();
   bluetoothRoutine();
 }
 
@@ -639,4 +641,6 @@ void connectToNetwork() {
     Serial.print(F("UDP-сервер на порту "));
     Serial.println(udp_port);
   }
+
+  OTA_Init();
 }
